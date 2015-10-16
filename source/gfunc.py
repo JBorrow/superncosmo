@@ -52,5 +52,5 @@ def get_mag_lpeak(lpeak, z, pi=pi, c=c, H0=H0, R0SN=GR_factor_R0):
 def get_data(fname=low_z_data):
     """Use data in columns of name, redshift, mag, mag_error with comma
     as the delimiter"""
-    raw = np.loadtxt(fname)
+    raw = np.loadtxt(fname, delimiter=" ")
     return np.hsplit(raw,4)
