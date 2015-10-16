@@ -30,4 +30,4 @@ def find_lpeak():
     return popt, pcov
 
 if __name__=="__main__":
-    find_lpeak()
+    print find_lpeak()
