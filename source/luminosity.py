@@ -11,20 +11,21 @@
 
 import numpy as np
 import gfunc as gf
-import scipy.optimize.curve_fit as curve_fit
+from scipy.optimize import curve_fit
 
 
 def mag_peak_fit(z, lpeak):
     """Wrapper for get_mag_peak that's compatible with curve_fit"""
-    return gf.get_mag_peak(lpeak, z)
+    return gf.get_mag_lpeak(lpeak, z)
 
 
 def find_lpeak():
     """Finds peak luminosity using the data and functions specified in gfunc."""
-    name, z, mag, mag_err = gf.get_data()
-    
-    popt, pcov = scipy.curve_fit(mag_peak_fit, z, mag, sigma=mag_err,
-                                 absolute_sigma=true)
+    z, mag, mag_err = gf.get_data()
+    print z, mag, mag_err
+
+    popt, pcov = curve_fit(mag_peak_fit, z, mag, sigma=mag_err,
+                                 absolute_sigma=True)
 
     return popt, pcov
 
