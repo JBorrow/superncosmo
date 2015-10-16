@@ -20,6 +20,7 @@ H0 = 75.  # in km/s/mpc
 c = 299792458.  # in m/s
 pi = np.pi
 m0 = 20.25  # units tbc, base magnitude
+low_z_data = "../data/low_z_data.csv"
 
 
 ################# Set global functions here ################################
@@ -44,6 +45,12 @@ def get_flux_lpeak(lpeak, z, pi=pi, c=c, H0=H0, R0SN=GR_factor_R0):
 def get_mag_lpeak(lpeak, z, pi=pi, c=c, H0=H0, R0SN=GR_factor_R0):
     """Wrapper for get_mag_from_flux and get_flux_lpeak to return magnitude
     instead of flux"""
-    
+    return get_mag_from_flux(get_flux_lpeak(lpeak, z, pi, c, H0,
+                             GR_factor_R0), m0)
 
 
+def get_data(fname=low_z_data):
+    """Use data in columns of name, redshift, mag, mag_error with comma
+    as the delimiter"""
+    raw = np.loadtxt(fname)
+    return np.hsplit(raw,4)
