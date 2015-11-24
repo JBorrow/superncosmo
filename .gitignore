@@ -3,3 +3,10 @@ data
 env
 *.pyc
 *checkpo*
+*.aux
+*.log
+*.out
+*.snm
+*.tex~
+*.nav
+*.toc
